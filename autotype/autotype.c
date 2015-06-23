@@ -164,6 +164,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 			szBaseIV = (TCHAR*)HeapAlloc(hHeap, HEAP_ZERO_MEMORY, (nBLen + 2)*sizeof(TCHAR));
 			GetWindowText(hInterval, szBaseIV, nBLen+1);
 			_stscanf_s(szBaseIV, _T("%d"), &secInt);
+			if(secInt < 0 || secInt > 15) secInt = 5;
 			HeapFree(hHeap, 0, szBaseIV);
 			CloseHandle(hHeap);
 			MessageBox(0, _T("Program will begin in 5 seconds after pressing OK..."), _T("Information"), MB_OK | MB_ICONASTERISK);
