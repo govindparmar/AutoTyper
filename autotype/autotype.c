@@ -87,7 +87,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 {
 	ATOM aRes = RegisterWCEX(hInstance);
 	MSG Msg;
-	if (aRes <0)
+	if (aRes <= 0)
 	{
 		MessageBox(0, _T("Window registration failed"), _T("Error"), MB_OK | MB_ICONSTOP);
 		return -1;
