@@ -74,7 +74,7 @@ __forceinline void CreateWindows(HINSTANCE hInstance)
 	hEditTxt = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, _T("Edit"), _T("e.g. \"buying rune 2 hander\" "), WS_VISIBLE | WS_CHILD | ES_LEFT, 10, 30, 360, 20, hWnd, NULL, hInstance, NULL);
 	hStatic2 = CreateWindow(_T("Static"), _T("Enter the base delay between sending text (1-60 seconds): "), WS_VISIBLE | WS_CHILD | SS_LEFTNOWORDWRAP, 10, 50, 280, 20, hWnd, NULL, hInstance, NULL);
 	hInterval = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, _T("Edit"), _T("5"), WS_VISIBLE | WS_CHILD | ES_LEFT | ES_NUMBER, 305, 50, 65, 20, hWnd, NULL, hInstance, NULL);
-	hRandChk = CreateWindow(_T("Button"), _T("Add additional random delay to base interval? (Max. Milliseconds): "), WS_VISIBLE | WS_CHILD | BS_AUTOCHECKBOX | BS_LEFTTEXT, 10, 70, 360, 20, hWnd, NULL, hInstance, NULL);
+	hRandChk = CreateWindow(_T("Button"), _T("Add additional random delay to base interval? (Max. Milliseconds): "), WS_VISIBLE | WS_CHILD | BS_AUTOCHECKBOX | BS_LEFTTEXT | BST_UNCHECKED, 10, 70, 360, 20, hWnd, NULL, hInstance, NULL);
 	hRandMS = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, _T("Edit"), _T("50"), WS_VISIBLE | WS_CHILD | ES_LEFT | ES_NUMBER  | WS_DISABLED, 30, 90, 110, 20, hWnd, NULL, hInstance, NULL);
 	hStartBtn = CreateWindow(_T("Button"), _T("Start"), WS_VISIBLE | WS_CHILD | BS_LEFTTEXT, 10, 110, 180, 30, hWnd, NULL, hInstance, NULL);
 	hStopBtn = CreateWindow(_T("Button"), _T("Stop"), WS_VISIBLE | WS_CHILD | BS_LEFTTEXT | WS_DISABLED, 190, 110, 180, 30, hWnd, NULL, hInstance, NULL);
