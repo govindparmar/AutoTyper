@@ -64,11 +64,11 @@ VOID CALLBACK TimerProc(HWND hwSrc, UINT Msg, UINT_PTR puTID, DWORD dwTime)
 __forceinline void CreateWindows(HINSTANCE hInstance)
 {
 	INITCOMMONCONTROLSEX iccx;
-	BOOL bRet;
+	//BOOL bRet;
 	iccx.dwICC =
 	 ICC_STANDARD_CLASSES | ICC_LINK_CLASS;
 	iccx.dwSize = sizeof(INITCOMMONCONTROLSEX);
-	bRet = InitCommonControlsEx(&iccx);
+	/*bRet = */ InitCommonControlsEx(&iccx);
 	hWnd = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, g_szClassName, _T("AutoTyper"), WS_VISIBLE | WS_SYSMENU, 100, 100, 400, 235, NULL, NULL, hInstance, NULL);
 	hStatic1 = CreateWindow(_T("Static"), _T("Enter the desired text to auto-type:"), WS_VISIBLE | WS_CHILD | SS_LEFTNOWORDWRAP, 10, 10, 360, 20, hWnd, NULL, hInstance, NULL);
 	hEditTxt = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, _T("Edit"), _T("e.g. \"buying rune 2 hander\" "), WS_VISIBLE | WS_CHILD | ES_LEFT, 10, 30, 360, 20, hWnd, NULL, hInstance, NULL);
@@ -78,7 +78,8 @@ __forceinline void CreateWindows(HINSTANCE hInstance)
 	hRandMS = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, _T("Edit"), _T("50"), WS_VISIBLE | WS_CHILD | ES_LEFT | ES_NUMBER  | WS_DISABLED, 30, 90, 110, 20, hWnd, NULL, hInstance, NULL);
 	hStartBtn = CreateWindow(_T("Button"), _T("Start"), WS_VISIBLE | WS_CHILD | BS_LEFTTEXT, 10, 110, 180, 30, hWnd, NULL, hInstance, NULL);
 	hStopBtn = CreateWindow(_T("Button"), _T("Stop"), WS_VISIBLE | WS_CHILD | BS_LEFTTEXT | WS_DISABLED, 190, 110, 180, 30, hWnd, NULL, hInstance, NULL);
-	hDonateLnk = CreateWindowEx(0, _T("SysLink"), _T("This program is 100% free.\r\nIf you want to donate to me via PayPal, please <A HREF=\"https://www.paypal.com/cgi-bin/webscr/?cmd=_s-xclick&hosted_button_id=X8EGYQNZ7VBPJ\">follow this link</A>."), WS_VISIBLE | WS_CHILD, 10, 140, 360, 40, hWnd, (HMENU)IDC_SYSLINK, hInstance, NULL); 
+	hDonateLnk = CreateWindowEx(0, _T("SysLink"), _T("This program is 100% free.\r\nIf you want to donate to me via PayPal, please <A HREF=\"https://www.paypal.me/govind\">follow this link</A>."), WS_VISIBLE | WS_CHILD, 10, 140, 360, 40, hWnd, (HMENU)IDC_SYSLINK, hInstance, NULL); 
+	// Old link: <A HREF=\"https://www.paypal.com/cgi-bin/webscr/?cmd=_s-xclick&hosted_button_id=X8EGYQNZ7VBPJ\">follow this link</A>
 }
 
 
@@ -275,38 +276,4 @@ VOID SendKeys(TCHAR *szTypeKeys, INT cchTypeKeys)
 	keybd_event(VK_RETURN, MapVirtualKey(VK_RETURN, MAPVK_VK_TO_VSC), 0, 0);
 	keybd_event(VK_RETURN, MapVirtualKey(VK_RETURN, MAPVK_VK_TO_VSC), KEYEVENTF_KEYUP, 0);
 
-	/*HANDLE hHeap = GetProcessHeap();
-	INPUT *inputs = (INPUT*)HeapAlloc(hHeap, HEAP_ZERO_MEMORY, 2*((cchTypeKeys)*sizeof(INPUT)));
-	INPUT rtrn[2] = { 0 };
-	INT i, count = 0;
-	for (i = 0; i < 2*cchTypeKeys; i+=2)
-	{
-		inputs[i].type = INPUT_KEYBOARD;
-		inputs[i].ki.wVk = VkKeyScan(szTypeKeys[count]);
-		inputs[i].ki.wScan = MapVirtualKey(szTypeKeys[count], MAPVK_VK_TO_VSC);
-		inputs[i].ki.dwFlags = 0;
-		inputs[i].ki.dwExtraInfo = 0;
-
-		inputs[i+1].type = INPUT_KEYBOARD;
-		inputs[i+1].ki.wVk = VkKeyScan(szTypeKeys[count]);
-		inputs[i+1].ki.wScan = MapVirtualKey(szTypeKeys[count], MAPVK_VK_TO_VSC);
-		inputs[i+1].ki.dwFlags = KEYEVENTF_KEYUP;
-		inputs[i+1].ki.dwExtraInfo = 0;
-		count++;
-	}
-	 
-	rtrn[0].type = INPUT_KEYBOARD;
-	rtrn[0].ki.wVk = VK_RETURN;
-	rtrn[0].ki.wScan = MapVirtualKey(VK_RETURN, MAPVK_VK_TO_VSC);
-	rtrn[0].ki.dwFlags = 0;
-	rtrn[0].ki.dwExtraInfo = 0;
-
-	rtrn[1].type = INPUT_KEYBOARD;
-	rtrn[1].ki.wVk = VK_RETURN;
-	rtrn[1].ki.wScan = MapVirtualKey(VK_RETURN, MAPVK_VK_TO_VSC);
-	rtrn[1].ki.dwFlags = KEYEVENTF_KEYUP;
-	rtrn[1].ki.dwExtraInfo = 0;
-
-	SendInput(cchTypeKeys*2, inputs, sizeof(INPUT));
-	SendInput(2, rtrn, sizeof(INPUT));*/
 }
